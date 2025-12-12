@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lease Troubleshooting Checklist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f1f3f6;
+      --card: #ffffff;
+      --accent: #1f4aa4;
+      --accent-2: #2b7de9;
+      --highlight: #b8d400;
+      --text: #1a1f2c;
+      --muted: #5f6474;
+      --border: #d8deea;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 32px 20px 48px;
+    }
+
+    .card {
+      width: min(920px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(19, 48, 112, 0.12);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.9rem;
+      letter-spacing: 0.01em;
+    }
+
+    .subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .sections {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .section {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 16px 8px;
+      background: #f8faff;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 8px;
+      border-radius: 10px;
+      transition: background 0.15s ease;
+    }
+
+    .item:hover {
+      background: rgba(43, 125, 233, 0.06);
+    }
+
+    .item input[type="checkbox"] {
+      margin-top: 2px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--accent-2);
+    }
+
+    .item label {
+      cursor: pointer;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .subtext {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-style: italic;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 10px 24px rgba(31, 74, 164, 0.25);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(31, 74, 164, 0.3);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 20px 14px 32px;
+      }
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header>
+      <div>
+        <h1>Troubleshooting: Leases</h1>
+        <p class="subtitle">Lease Troubleshooting Checklist with quick local save.</p>
+      </div>
+      <div class="actions">
+        <button type="button" id="check-all">Check all</button>
+        <button type="button" id="clear-all">Clear all</button>
+      </div>
+    </header>
+
+    <section class="sections" aria-label="Lease troubleshooting checklist">
+      <article class="section" data-section="Quick Checks">
+        <h2>Quick Checks</h2>
+        <div class="item">
+          <input type="checkbox" id="item-Is it a new vehicle?">
+          <label for="item-Is it a new vehicle?">*Is it a new vehicle?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Is it the beginning of the month? (leases may not display for the first few days of the month)">
+          <label for="item-Is it the beginning of the month? (leases may not display for the first few days of the month)">
+            *Is it the beginning of the month?
+            <span class="subtext">(leases may not display for the first few days of the month)</span>
+          </label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Have you cleared your cache and cookies / using Incognito?">
+          <label for="item-Have you cleared your cache and cookies / using Incognito?">Have you cleared your cache and cookies / using Incognito?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Is Allow Third Party Cookies enabled in your browser?">
+          <label for="item-Is Allow Third Party Cookies enabled in your browser?">*Is Allow Third Party Cookies enabled in your browser?</label>
+        </div>
+      </article>
+
+      <article class="section" data-section="Setup Information">
+        <h2>Setup &gt; Information</h2>
+        <div class="item">
+          <input type="checkbox" id="item-Is there a ZIP code?">
+          <label for="item-Is there a ZIP code?">*Is there a ZIP code?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Does it also have a Plus Four (+4)?">
+          <label for="item-Does it also have a Plus Four (+4)?">*Does it also have a Plus Four (+4)?</label>
+        </div>
+      </article>
+
+      <article class="section" data-section="BuyNow Pricing">
+        <h2>BuyNow &gt; BuyNow Pricing</h2>
+        <div class="item">
+          <input type="checkbox" id="item-Are Leases Enabled?">
+          <label for="item-Are Leases Enabled?">*Are Leases Enabled?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Price Includes Rebates unchecked for Leases?">
+          <label for="item-Price Includes Rebates unchecked for Leases?">*Price Includes Rebates unchecked for Leases?</label>
+        </div>
+      </article>
+
+      <article class="section" data-section="BuyNow Offers">
+        <h2>BuyNow &gt; Offers</h2>
+        <div class="item">
+          <input type="checkbox" id="item-Use AIS Offers disabled?">
+          <label for="item-Use AIS Offers disabled?">Use AIS Offers disabled?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Use offers based on customer location enabled?">
+          <label for="item-Use offers based on customer location enabled?">Use offers based on customer location enabled?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Default starting Lease Term selected?">
+          <label for="item-Default starting Lease Term selected?">Default starting Lease Term selected?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Default starting Lease Miles cleared?">
+          <label for="item-Default starting Lease Miles cleared?">Default starting Lease Miles cleared?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Do we have Terms available for Leases?">
+          <label for="item-Do we have Terms available for Leases?">Do we have Terms available for Leases?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Is there a bank assigned for Leases?">
+          <label for="item-Is there a bank assigned for Leases?">Is there a bank assigned for Leases?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Do our Lease Credit Tiers match JDP? Link">
+          <label for="item-Do our Lease Credit Tiers match JDP? Link">
+            Do our Lease Credit Tiers match JDP?
+            <a href="https://carnow-my.sharepoint.com/:x:/p/mgruber/EXzIOxrU_f5GmSHWh2kr2HUBrM8JihvH77dCsGXd3HshEg?e=WQWmBB" target="_blank" rel="noopener noreferrer">Link</a>
+          </label>
+        </div>
+      </article>
+
+      <article class="section" data-section="Feed">
+        <h2>Feed</h2>
+        <div class="item">
+          <input type="checkbox" id="item-Are we receiving a feed?">
+          <label for="item-Are we receiving a feed?">*Are we receiving a feed?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Is it up to date?">
+          <label for="item-Is it up to date?">*Is it up to date?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Download most recent available feed (feed_file.csv)">
+          <label for="item-Download most recent available feed (feed_file.csv)">Download most recent available feed (feed_file.csv)</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Does the vehicle have MSRP?">
+          <label for="item-Does the vehicle have MSRP?">Does the vehicle have MSRP?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Does it have a value in Mileage / Odometer?">
+          <label for="item-Does it have a value in Mileage / Odometer?">Does it have a value in Mileage / Odometer?</label>
+        </div>
+        <div class="item">
+          <input type="checkbox" id="item-Are we targeting the correct price?">
+          <label for="item-Are we targeting the correct price?">
+            Are we targeting the correct price?
+            <span class="subtext">Check this in Plugin &gt; Content &gt; Price displayed</span>
+          </label>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const storageKey = "lease-checklist-state-v1";
+
+      function loadState() {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey) || "{}");
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveState(state) {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch (e) {
+          /* ignore write issues */
+        }
+      }
+
+      const state = loadState();
+      const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+
+      checkboxes.forEach((box) => {
+        box.checked = Boolean(state[box.id]);
+        box.addEventListener("change", () => {
+          state[box.id] = box.checked;
+          saveState(state);
+        });
+      });
+
+      document.getElementById("check-all").addEventListener("click", () => {
+        checkboxes.forEach((box) => {
+          box.checked = true;
+          state[box.id] = true;
+        });
+        saveState(state);
+      });
+
+      document.getElementById("clear-all").addEventListener("click", () => {
+        checkboxes.forEach((box) => {
+          box.checked = false;
+          state[box.id] = false;
+        });
+        saveState(state);
+      });
+    })();
+  </script>
+</body>
+</html>
