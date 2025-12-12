@@ -109,6 +109,12 @@
       cursor: pointer;
       line-height: 1.45;
       color: var(--text);
+      transition: all 0.2s ease;
+    }
+
+    .item input[type="checkbox"]:checked + label {
+      text-decoration: line-through;
+      color: var(--muted);
     }
 
     .subtext {
